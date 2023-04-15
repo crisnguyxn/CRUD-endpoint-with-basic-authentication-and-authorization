@@ -3,12 +3,21 @@ const connectDB = require('./src/db/connect')
 const authRouter = require('./src/routes/authen')
 const jobsRouter = require('./src/routes/jobs')
 const handleErrMiddlewares = require('./src/middlewares/handle-error')
+const cookieParser = require('cookie-parser')
+const roomRouter = require('./src/routes/room')
+const cors = require('cors')
 const app = express()
 require('dotenv').config()
 
 //middlewares
 app.use(express.json())
-
+const corsOptions ={
+    origin:'http://localhost:3001', 
+    credentials:true,  
+    optionSuccessStatus:200
+}
+app.use(cors(corsOptions))
+app.use(cookieParser())
 const port = 3000
 const start = async () => {
     try {
@@ -21,6 +30,7 @@ const start = async () => {
 
 app.use('/api/v1/auth',authRouter)
 app.use('/api/v1/jobs',jobsRouter)
+app.use('/api/v1/room',roomRouter)
 app.use(handleErrMiddlewares)
 
 start()

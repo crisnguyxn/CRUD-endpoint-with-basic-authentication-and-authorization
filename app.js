@@ -12,13 +12,13 @@ require('dotenv').config()
 //middlewares
 app.use(express.json())
 const corsOptions ={
-    origin:'http://localhost:3001', 
+    origin:'http://localhost:3000', 
     credentials:true,  
     optionSuccessStatus:200
 }
 app.use(cors(corsOptions))
 app.use(cookieParser())
-const port = 3000
+const port = 4000
 const start = async () => {
     try {
         await connectDB(process.env.MONGO_URI)
@@ -30,7 +30,7 @@ const start = async () => {
 
 app.use('/api/v1/auth',authRouter)
 app.use('/api/v1/jobs',jobsRouter)
-app.use('/api/v1/room',roomRouter)
+app.use('/api/v1/rooms',roomRouter)
 app.use(handleErrMiddlewares)
 
 start()

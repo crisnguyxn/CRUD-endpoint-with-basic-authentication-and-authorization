@@ -28,7 +28,6 @@ const login = asyncWrapper(async (req, res, next) => {
     return next(handleError("Password must be longer than 6 characters", 401));
   }
   const tokenRoom = req.signedCookies;
-  console.log(tokenRoom);
   const user = await User.findOne({ email });
   if (!user) {
     return next(handleError(`User with this email: ${req.body.email} is not existed`, 401));

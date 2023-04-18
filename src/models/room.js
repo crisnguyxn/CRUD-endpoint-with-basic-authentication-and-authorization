@@ -47,7 +47,11 @@ const RoomSchema = mongoose.Schema({
     userId:{
         type:String,
         required:true
-    } 
+    } ,
+    backgroundColor:{
+        type:String,
+        required:true
+    }
 })
 
 module.exports = mongoose.model('Room',RoomSchema)
